@@ -5,7 +5,7 @@ from .views import HomeView
 class NewVisitorTest(unittest.TestCase):
 	def setUp(self):
 		self.browser = webdriver.Firefox()
-		self.browser.implicitly_wait(30)
+		#self.browser.implicitly_wait(30)
 		
 	def tearDown(self):
 		self.browser.quit()
@@ -21,7 +21,12 @@ class NewVisitorTest(unittest.TestCase):
 		
 		# She sees a list containing three heroes with their corresponding 
 		# names, health points, and damage 
-		
+		detail = self.browser.find_element_by_id('cloudName')
+		self.assertEqual(detail.get_attribute('innerHTML'), 'Cloud')
+		detail = self.browser.find_element_by_id('cloudHealth')
+		self.assertEqual(detail.get_attribute('innerHTML'), '600')
+		detail = self.browser.find_element_by_id('cloudAttack')
+		self.assertEqual(detail.get_attribute('innerHTML'), '57')
 		# When she selects one of the heroes, she is sent to another page
 		# containing more information about the hero (additional stats, lore, image).
 		
