@@ -27,13 +27,35 @@ class NewVisitorTest(unittest.TestCase):
 		self.assertEqual(detail.get_attribute('innerHTML'), '600')
 		detail = self.browser.find_element_by_id('cloudAttack')
 		self.assertEqual(detail.get_attribute('innerHTML'), '57')
+		
+		detail = self.browser.find_element_by_id('jesterName')
+		self.assertEqual(detail.get_attribute('innerHTML'), 'Jester')
+		detail = self.browser.find_element_by_id('jesterHealth')
+		self.assertEqual(detail.get_attribute('innerHTML'), '660')
+		detail = self.browser.find_element_by_id('jesterAttack')
+		self.assertEqual(detail.get_attribute('innerHTML'), '64')
+		
+		detail = self.browser.find_element_by_id('sunName')
+		self.assertEqual(detail.get_attribute('innerHTML'), 'Sunflowey')
+		detail = self.browser.find_element_by_id('sunHealth')
+		self.assertEqual(detail.get_attribute('innerHTML'), '650')
+		detail = self.browser.find_element_by_id('sunAttack')
+		self.assertEqual(detail.get_attribute('innerHTML'), '43')
+		
 		# When she selects one of the heroes, she is sent to another page
 		# containing more information about the hero (additional stats, lore, image).
+		self.browser.get('http://localhost:8000/hero/cloud')
 		
 		# She spots the page title and header mentions the name of the hero she selected.
+		detail = self.browser.find_element_by_id('cloudtitle')
+		self.assertEqual(detail.get_attribute('innerHTML'), 'Detail - Cloud')
+		detail = self.browser.find_element_by_id('cloudheading')
+		self.assertEqual(detail.get_attribute('innerHTML'), 'Detail - Cloud')
 		
 		# While she is in a specific hero's page, she sees a button labeled "Back to Heroes List".
-		# She clicks this and she is redirected back to the wiki's homepage.	
+		# She clicks this and she is redirected back to the wiki's homepage.
+		button = self.browser.find_element_by_id('button').click()		
+		
 		#self.assertEqual(resolve('/').func, home)
 		self.fail('Finish the test!')
 		
